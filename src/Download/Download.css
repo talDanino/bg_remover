@@ -18,14 +18,16 @@
 }
 
 .btn_download {
-  border: 1px solid #3c6679;
-  color: #03a9f4;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  border: 1px solid #03A9F4;
+    color: #03A9F4;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: transparent;
+    width: 100%;
 }
 
 .small_text_download {

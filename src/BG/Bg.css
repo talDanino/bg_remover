@@ -32,20 +32,25 @@
   text-align: right;
   border-radius: 28px;
   position: absolute;
-  top: 62px;
+  top: 41px;
   left: 14px;
   background-image: url("../assets/Upload.png");
   background-repeat: no-repeat;
   background-position: 13px 10px;
+  cursor: pointer;
 }
 
 .upload_btn_text{
   position: absolute;
   color: #ffffff96;
   direction: rtl;
-  top: 73px;
+  top: 50px;
   left: 198px;
   font-size: 12px;
+}
+
+.upload_input{
+  display: none;
 }
 
 .content_div {
@@ -191,4 +196,11 @@
     margin-right: 72px;
     height: 35px;
     margin-top: 4px;
+}
+
+.err_mgs{
+  position: absolute;
+  color: red;
+  left: 97px;
+  font-size: 13px;
 }

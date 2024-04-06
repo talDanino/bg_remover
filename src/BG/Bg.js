@@ -1,11 +1,15 @@
 import "./Bg.css";
+
 import close from "../assets/close.png";
-import Download from "../Download/Download";
-import { useState } from "react";
-import Display_img from "../Display_img/Display_img";
 import banner from "../assets/banner.png";
 import logo from "../assets/logo.png";
+
+import Download from "../Download/Download";
+import Display_img from "../Display_img/Display_img";
 import Download_popup from "../Download_popup/Download_popup";
+import axios from 'axios';
+import { useState, useRef } from "react";
+
 
 
 function Bg() {
@@ -13,6 +17,17 @@ function Bg() {
   const[selected_tab, setselected_tab] = useState(true);
   const[show_eula, setsshow_eula] = useState(false);
   const[show_download_popup, setshow_download_popup] = useState(false);
+  const[show_error, setsshow_error] = useState(false);
+  
+  
+  
+  const inputElement = useRef();
+
+  const focusInput = () => {
+    inputElement.current.click();
+  };
+
+
 
 
   function selected(e){
@@ -32,6 +47,43 @@ function Bg() {
     setshow_download_popup(!show_download_popup);
   }
 
+  
+
+ 
+  function uploadFile(e){
+
+      let file = e.target.files[0];
+      debugger;
+
+      if((file.type=="image/png" || file.type=="image/jpeg") && file.size<=10000000){
+
+        let formData = new FormData(); 
+        
+        formData.append('fileImg', e.target.files[0]);
+  
+
+        let headers= {
+          'Content-Type': 'multipart/form-data'
+        }
+  
+        axios.post('http://localhost:5000/upload_img', formData, headers)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error=>{
+          console.log(error);
+        });
+
+      } else{
+        setsshow_error(true);
+      }
+      
+  
+  }
+
+
+
+
 
   return (
     <div>
@@ -42,9 +94,12 @@ function Bg() {
         <div className="header_title">העלאת תמונה כדי להסיר את הרקע</div>
         <img src={close} className="close_top" />
 
-        <div className="upload_btn">העלאת תמונה</div>
+        <div className="upload_btn" onClick={focusInput}> העלאת תמונה </div>
 
         <div className="upload_btn_text">  פורמטים נתמכים jpeg, png </div>
+        {show_error ? <div className="err_msg"> פורמט לא נתמך </div> : <></>}
+
+        <input type="file" onChange={uploadFile} ref={inputElement} className="upload_input"/>
 
 
         <div className="content_div">

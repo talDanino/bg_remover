@@ -1,5 +1,4 @@
 import "./Bg.css";
-
 import close from "../assets/close.png";
 import banner from "../assets/banner.png";
 import logo from "../assets/logo.png";
@@ -11,13 +10,21 @@ import axios from 'axios';
 import { useState, useRef } from "react";
 
 
-
 function Bg() {
 
   const[selected_tab, setselected_tab] = useState(true);
+
   const[show_eula, setsshow_eula] = useState(false);
   const[show_download_popup, setshow_download_popup] = useState(false);
+
   const[show_error, setsshow_error] = useState(false);
+
+  const[img_bg, setimg_bg] = useState('');
+  const[img_bg_no_bg, setimg_bg_no_bg] = useState('');
+
+  const[show_loader, setshow_loader] = useState(false);
+
+
   
   
   
@@ -28,10 +35,9 @@ function Bg() {
   };
 
 
-
-
   function selected(e){
-    if(e.target.innerHTML == ' הוסר רקע'){
+    //debugger;
+    if(e.target.innerHTML == ' הוסר רקע '){
       setselected_tab(true);
     }
     else{
@@ -46,48 +52,47 @@ function Bg() {
   function show_download_popup_func(){
     setshow_download_popup(!show_download_popup);
   }
-
-  
-
  
   function uploadFile(e){
 
+      setshow_loader(!show_loader);
       let file = e.target.files[0];
-      debugger;
+      const server_url= 'http://localhost:5000/';
 
+      
       if((file.type=="image/png" || file.type=="image/jpeg") && file.size<=10000000){
 
-        let formData = new FormData(); 
+          let formData = new FormData(); 
         
-        formData.append('fileImg', e.target.files[0]);
+          formData.append('fileImg', e.target.files[0]);
   
+          let headers= {
+            'Content-Type': 'multipart/form-data'
+          }
 
-        let headers= {
-          'Content-Type': 'multipart/form-data'
-        }
-  
-        axios.post('http://localhost:5000/upload_img', formData, headers)
-        .then(response => {
-          console.log(response.data);
-        })
-        .catch(error=>{
-          console.log(error);
-        });
+          axios.post(server_url+'upload_img', formData, headers)
+          .then(response => {
+            setimg_bg(server_url + response.data); // התשובה שחזרה לי מהשרת
+            setimg_bg_no_bg(server_url + 'no_bg_' + response.data); 
+
+            e.target.value = null;
+
+          })
+          .catch(error=>{
+            console.log(error);
+          });
 
       } else{
         setsshow_error(true);
       }
+
+      setshow_loader(!show_loader); // hide the loader div when we get the response from server
       
-  
   }
-
-
-
 
 
   return (
     <div>
-
 
       <div className="bg_cont">
 
@@ -101,18 +106,26 @@ function Bg() {
 
         <input type="file" onChange={uploadFile} ref={inputElement} className="upload_input"/>
 
-
         <div className="content_div">
               <div className="content_left">
 
                 <div className="tabs_cont">
-                  <div className={"tabs_text text_bg_no_bg " +(selected_tab == true ? " border_bottom_selected" : "")} onClick={selected}> הוסר רקע </div>
-                  <div className={"tabs_text text_bg_original " + (selected_tab != true ? " border_bottom_selected" : "")} onClick={selected}> מקורי </div>
+                  <div className={"tabs_text text_bg_no_bg"    + (selected_tab == true ? ' border_bottom_selected' : '')} onClick={selected}> הוסר רקע </div>
+                  <div className={"tabs_text text_bg_orig" + (selected_tab != true ? ' border_bottom_selected' : '')} onClick={selected}> מקורי </div>
                 </div>
 
                 <div className="content_left_middle">
-                    {selected_tab == true ? <Display_img comp_type="no_bg"></Display_img> : <Display_img comp_type="orig_comp"></Display_img>}
+                    {selected_tab == true ? 
+                      <Display_img comp_type="no_bg_comp" img_bg={img_bg_no_bg}></Display_img> 
+                    : 
+                      <Display_img comp_type="orig_comp" img_bg={img_bg}></Display_img>}
                 </div>
+
+
+                {show_loader ? 
+                <div className="loader">
+                    <div className="loader_percent"> 39% </div>
+                </div>: <></>}
 
                 <div className="footer_left_content">
                   <div className="footer_text">

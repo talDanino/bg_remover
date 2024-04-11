@@ -113,7 +113,7 @@
   cursor: pointer;
 }
 
-.text_bg_original {
+.text_bg_orig {
   background-image: url("../assets/Image.png");
   background-repeat: no-repeat;
   background-position: 106px 6px;
@@ -203,4 +203,25 @@
   color: red;
   left: 97px;
   font-size: 13px;
+}
+
+.loader{
+  background-color: black;
+  width: 49%;
+  height: 28px;
+  position: absolute;
+  top: 345px;
+  margin-left: 78px;
+  box-shadow: 1px 1px 10px #cbcacaa1;
+  border-radius: 5px;
+}
+
+.loader_percent {
+  background-image: linear-gradient(76deg, #9C27B0, #00BCD4);
+  height: 92%;
+  margin-top: 1px;
+  margin-left: 1px;
+  width: 39%;
+  text-align: center;
+  color: white;
 }

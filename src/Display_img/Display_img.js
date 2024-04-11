@@ -5,14 +5,13 @@ import {useRef} from 'react'
 
 function Display_img(props) {
   
-  const inputElement = useRef();
+    const inputElement = useRef();
 
-  const colorInput = () => {
-    inputElement.current.click();
-  };
+    const colorInput = () => {
+        inputElement.current.click();
+    };
 
     return (
-
         <div className="disp_img_cont">
             
             <div>
@@ -25,13 +24,16 @@ function Display_img(props) {
 
                 </>
                 : <></> }
-
-
             </div>
             
-            <div>
-                <img src={img_bg} className="img_bg"/>
-            </div>
+            {props.img_bg!=''?
+                <div>
+                    {/* Here we display the image from the server */}
+                    <img src={props.img_bg} className="img_bg"/> 
+                </div>
+                :
+                <></>
+            }
 
         </div>
     );

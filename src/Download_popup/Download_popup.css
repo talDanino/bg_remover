@@ -9,7 +9,7 @@
 }
 
 .download_popup_cont{
-width: 54%;
+width: 620px;
 height: 293px;
 background-color: white;
 position: absolute;
@@ -27,17 +27,17 @@ cursor: pointer;
 
 .download_popup_top_div{
 background-image: url('../assets/Downloads\ Folder.png');
-width: 70px;
-height: 70px;
-background-repeat: no-repeat;
-position: absolute;
-top: -40px;
-left: 217px;
-background-color: white;
-border-radius: 10px;
-background-position: 10px 11px;
-background-size: 71%;
-box-shadow: 0px 1px 10px #9c27b066;
+width: 80px;
+    height: 80px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -50px;
+    left: 263px;
+    background-color: white;
+    border-radius: 10px;
+    background-position: 16px 15px;
+    background-size: 65%;
+    box-shadow: 0px 1px 10px #9c27b066;
 }
 
 .download_popup_title{
@@ -49,38 +49,37 @@ color: #00007a;
 }
 
 .download_popup_subtitle{
-text-align: center;
-/* font-family: "Aduma"; */
-font-size: 20px;
-color: #00007a;
-margin-top: 11px;
-direction: rtl;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 11px;
+    color: #00007a;
+    direction: rtl;
 }
 
 .not_robot_cont{
-position: absolute;
-display: flex;
-flex-direction: row-reverse;
-right: 66px;
-top: 164px;
+    position: absolute;
+    display: flex;
+    flex-direction: row-reverse;
+    right: 158px;
+    top: 184px;
 }
 
 .not_robot_text{
-color: #00007a;
-font-size: 12px;
+    color: #00007a;
+    font-size: 12px;
 }
 
 .not_robot_img{
-width: 15px;
-height: 15px;
-margin-right: 19px;
-margin-top: 2px;
+    width: 15px;
+    height: 15px;
+    margin-right: 19px;
+    margin-top: 2px;
 }
 
 .aprove_btn_cont{
     position: absolute;
-    top: 223px;
-    left: 100px;
+    top: 241px;
+    left: 180px;
 }
 
 .cancel_btn{
@@ -92,6 +91,7 @@ margin-top: 2px;
     font-family: 'Aduma';
     color: #00007a;
     margin-left: 9px;
+    cursor: pointer;
 }
 
 
@@ -106,4 +106,13 @@ margin-top: 2px;
     background-image: linear-gradient(76deg, #9C27B0, #00BCD4);
     border: 0;
     color: white;
+    cursor: pointer ;
+}
+
+.not_robot_error{
+    color: red;
+    position: absolute;
+    top: 209px;
+    left: 349px;
+    font-size: 12px;
 }

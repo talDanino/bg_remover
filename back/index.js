@@ -17,6 +17,7 @@ app.post('/upload_img', function(req,res) {
     const d = new Date();
     let time = d.getTime();
 
+    const color = req.body.color;
 
     let imageFile = req.files.fileImg;
     let image = `${__dirname}/uploaded_img/${time}${req.files.fileImg.name}`;
@@ -27,7 +28,7 @@ app.post('/upload_img', function(req,res) {
         }
 
 
-        await sent_to_api(image, time+req.files.fileImg.name );
+        await sent_to_api(image, time+req.files.fileImg.name, color );
 
         res.send(`${time}${req.files.fileImg.name}`);
 

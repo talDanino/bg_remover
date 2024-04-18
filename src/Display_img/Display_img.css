@@ -37,3 +37,15 @@
 .disp_img_cont{
     position: relative;
 }
+
+
+.color_span{
+    border: 1px solid #ffffff8c;
+    width: 16px;
+    position: absolute;
+    height: 27px;
+    top: -1px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    right: -1px;
+}

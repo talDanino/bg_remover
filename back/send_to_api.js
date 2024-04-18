@@ -6,12 +6,14 @@ const path = require('path');
 
 
 
-module.exports = async function send_to_api(img_name_path, image_name){  //// for access from outside
+module.exports = async function send_to_api(img_name_path, image_name, color){  //// for access from outside
 
     const inputPath = img_name_path;
     const formData = new FormData();
+
     formData.append('size', 'auto');
     formData.append('image_file', fs.createReadStream(inputPath), path.basename(inputPath));
+    formData.append('bg_color', color);
     
     await axios({
       method: 'post',
